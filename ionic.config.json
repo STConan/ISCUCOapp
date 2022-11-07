@@ -1,0 +1,7 @@
+{
+  "name": "ISCUCO-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
