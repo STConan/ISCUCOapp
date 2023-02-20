@@ -1,0 +1,1116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Encuesta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list [inset]="true" lines="full">
+
+    <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+
+        <ion-label class="ion-text-wrap">Select the Location where the Survey is being taken</ion-label>
+        <ion-select placeholder="Locacion" formControlName="q1">
+          <ion-select-option value="1">New York City, NY</ion-select-option>
+          <ion-select-option value="2">El Paso, TX</ion-select-option>
+          <ion-select-option value="3">Los Angeles, CA</ion-select-option>
+          <ion-select-option value="4">Chicago, IL</ion-select-option>
+        </ion-select>
+
+        <ion-label class="ion-text-wrap">1) I describe myself as Hispanic or Latin American-origin</ion-label>
+        <ion-radio-group formControlName="q2">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes" expand="full"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="stacked">2) The country of origin of my family is</ion-label>
+          <ion-input placeholder="List as many as needed" formControlName="q3"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">3) I was born in the United States</ion-label>
+        <ion-radio-group formControlName="q4" (ionChange)="eventQ4($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q4">4) I moved to the United States before the age of 13</ion-label>
+        <ion-radio-group formControlName="q5" *ngIf="this.q4">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+     
+        <ion-label class="ion-text-wrap">5) I prefer to speak:</ion-label>
+        <ion-radio-group formControlName="q6">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>English</ion-label>
+              <ion-radio slot="start" value="English"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Spanish</ion-label>
+              <ion-radio slot="start" value="Spanish"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Either one or Both</ion-label>
+              <ion-radio slot="start" value="Either or Both"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">6) In my house the preferred language is:</ion-label>
+        <ion-radio-group formControlName="q7">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>English</ion-label>
+              <ion-radio slot="start" value="English"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Spanish</ion-label>
+              <ion-radio slot="start" value="Spanish"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Either one or Both</ion-label>
+              <ion-radio slot="start" value="Either or Both"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="stacked">7) My age is</ion-label>
+          <ion-input placeholder="Age in numbers" inputmode="numeric" formControlName="q8"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">8) I am a</ion-label>
+        <ion-radio-group formControlName="q9">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Man</ion-label>
+              <ion-radio slot="start" value="Man"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Woman</ion-label>
+              <ion-radio slot="start" value="Woman"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Non-Binary</ion-label>
+              <ion-radio slot="start" value="Non-Binary"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      
+        <ion-item>  
+          <ion-label class="ion-text-wrap" position="stacked">9) In my house, there are how many people (best answer)</ion-label>
+          <ion-input placeholder="People in household" inputmode="numeric" formControlName="q10"></ion-input>
+        </ion-item>
+      
+        <ion-item>  
+          <ion-label class="ion-text-wrap" position="stacked">10) In my house, there are how many children below 18yo (best answer)</ion-label>
+          <ion-input placeholder="Children in household" inputmode="numeric" formControlName="q11"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="stacked">11) In my house, there are how many people over 65yo(including myself)</ion-label>
+          <ion-input placeholder="People over 65 in household" inputmode="numeric" formControlName="q12"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">12) I am disabled:</ion-label>
+        <ion-radio-group formControlName="q13">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-item>  
+          <ion-label class="ion-text-wrap" position="stacked">13) In my house, there are how many disabled people</ion-label>
+          <ion-input placeholder="Disabled in household" inputmode="numeric" formControlName="q14"></ion-input>
+        </ion-item>
+ 
+        <ion-label class="ion-text-wrap">14) My annual income is approximately:</ion-label>
+        <ion-radio-group formControlName="q15">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>$0-$9,999</ion-label>
+              <ion-radio slot="start" value="$0-$9,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$10,000-$19,999</ion-label>
+              <ion-radio slot="start" value="$10,000-$19,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$20,000-$29,999</ion-label>
+              <ion-radio slot="start" value="$20,000-$29,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$30,000-$39,999</ion-label>
+              <ion-radio slot="start" value="$30,000-$39,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$40,000-$49,999</ion-label>
+              <ion-radio slot="start" value="$40,000-$49,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$50,000-$59,999</ion-label>
+              <ion-radio slot="start" value="$50,000-$59,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$60,000-$69,999</ion-label>
+              <ion-radio slot="start" value="$60,000-$69,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$70,000-$79,999</ion-label>
+              <ion-radio slot="start" value="$70,000-$79,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$80,000-$89,999</ion-label>
+              <ion-radio slot="start" value="$80,000-$89,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$90,000-$99,999</ion-label>
+              <ion-radio slot="start" value="$90,000-$99,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$100,000-$109,999</ion-label>
+              <ion-radio slot="start" value="$100,000-$109,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$110,000-$119,999</ion-label>
+              <ion-radio slot="start" value="$110,000-$119,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$120,000-$129,999</ion-label>
+              <ion-radio slot="start" value="$120,000-$129,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$130,000-$139,999</ion-label>
+              <ion-radio slot="start" value="$130,000-$139,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$140,000-$149,999</ion-label>
+              <ion-radio slot="start" value="$140,000-$149,999"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>$150,000+</ion-label>
+              <ion-radio slot="start" value="$150,000+"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">15) In my house, sometimes we pay (shop) for food:</ion-label>
+        <ion-radio-group formControlName="q16">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">16) In my house, we have used Food Stamps (SNAP) in the past two years:</ion-label>
+        <ion-radio-group formControlName="q17">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">17) Sometimes in my house we get food from a food bank or other pantry:</ion-label>
+        <ion-radio-group formControlName="q18">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="stacked">18) In my house, who obtains food from a food bank or other pantry?</ion-label>
+          <ion-input placeholder="Name this person(s) e.g: Grandmother, Mother, Daughter, Me" formControlName="q19"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">19) The person who gets food from the pantry, gets it</ion-label>
+        <ion-radio-group formControlName="q20" (ionChange)="eventOther19($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>For her/himself only</ion-label>
+              <ion-radio slot="start" value="For her/himself only"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>For everyone</ion-label>
+              <ion-radio slot="start" value="For Everyone"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>For specific people(list who they are by relationship to the household)</ion-label>
+              <ion-radio slot="start" value="specific"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+        <ion-item *ngIf="this.Other19">
+          <ion-label class="ion-text-wrap" position="stacked">List by relationship</ion-label>
+          <ion-input placeholder="Name this person(s) e.g: Grandmother, Mother, Daughter, Me" formControlName="q21"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">20) In my house, we have a car:</ion-label>
+        <ion-radio-group formControlName="q22">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">21) The car is available when needed to get food supplies</ion-label>
+        <ion-radio-group formControlName="q23">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Sometimes</ion-label>
+              <ion-radio slot="start" value="Sometimes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">22) We mainly rely on public transportation, e.g., bus, subway)</ion-label>
+        <ion-radio-group formControlName="q24">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">23) We mainly rely on car service, Uber, Lyft</ion-label>
+        <ion-radio-group formControlName="q25">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">24) We mainly rely on a friend or relative for rides</ion-label>
+        <ion-radio-group formControlName="q26">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">25) For the person who gets food supplies, specific times when food supplies can be picked up are important</ion-label>
+        <ion-radio-group formControlName="q27" (ionChange)="eventQ25($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q25">26) Times before or after work</ion-label>
+        <ion-radio-group formControlName="q28" *ngIf="this.q25">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q25">27) Times after children go to school</ion-label>
+        <ion-radio-group formControlName="q29" *ngIf="this.q25">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q25">28) Weekends</ion-label>
+        <ion-radio-group formControlName="q30" *ngIf="this.q25">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q25">29) Weekdays</ion-label>
+        <ion-radio-group formControlName="q31" *ngIf="this.q25">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-item *ngIf="this.q25">
+          <ion-label class="ion-text-wrap" position="stacked">30) Other specific times [fill in space]:</ion-label>
+          <ion-input placeholder="Other specific times" formControlName="q32"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">31) For the person who gets food supplies, having a location near the home is important</ion-label>
+        <ion-radio-group formControlName="q33" (ionChange)="eventQ31($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q31">32) Near the children's school</ion-label>
+        <ion-radio-group formControlName="q34" *ngIf="this.q31">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q31">33) Near work</ion-label>
+        <ion-radio-group formControlName="q35" *ngIf="this.q31">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+        
+        <ion-item *ngIf="this.q31">
+          <ion-label class="ion-text-wrap" position="stacked">34) Other specific places:</ion-label>
+          <ion-input placeholder="Other specific times" formControlName="q36"></ion-input>
+        </ion-item>
+        
+        <ion-label class="ion-text-wrap">35) When the person gets food supplies, she/he departs from</ion-label>
+        <ion-item>
+          <ion-select placeholder="Select all locations that apply" [multiple]="true" formControlName="q37" (ionChange)="eventOther35($event)">
+            <ion-select-option value="Home">Home</ion-select-option>
+            <ion-select-option value="Work">Work</ion-select-option>
+            <ion-select-option value="School">School</ion-select-option>
+            <ion-select-option value="Other">Other</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="this.Other35">
+          <ion-label class="ion-text-wrap" position="stacked">Other specific places:</ion-label>
+          <ion-input placeholder="Other specific places" formControlName="q38"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">36) It is important to us what kind of food we can get</ion-label>
+        <ion-radio-group formControlName="q39">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">37) We would like food from our home country</ion-label>
+        <ion-radio-group formControlName="q40">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Maybe</ion-label>
+              <ion-radio slot="start" value="Maybe"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">38) We prefer to get prepared (cooked) food or we prefer food supplies that we can prepare</ion-label>
+        <ion-radio-group formControlName="q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Prepared (cooked) food</ion-label>
+              <ion-radio slot="start" value="Prepared (cooked) food"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Food supplies that we can prepare</ion-label>
+              <ion-radio slot="start" value="Food supplies that we can prepare"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No preference</ion-label>
+              <ion-radio slot="start" value="No preference"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap">39) We need (can select more than one)</ion-label>
+        <ion-item>
+          <ion-select placeholder="Select all options that apply" [multiple]="true" formControlName="q42" (ionChange)="eventOther39($event)">
+            <ion-select-option value="Young children's food (five and below)">Young children's food (five and below)</ion-select-option>
+            <ion-select-option value="Older children's food (six and up)">Older children's food (six and up)</ion-select-option>
+            <ion-select-option value="Food for an elderly person">Food for an elderly person</ion-select-option>
+            <ion-select-option value="Diabetic Diet">Diabetic Diet</ion-select-option>
+            <ion-select-option value="Vegetarian">Vegetarian</ion-select-option>
+            <ion-select-option value="Other">Other</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="this.Other39">
+          <ion-label position="stacked">Other:</ion-label>
+          <ion-input placeholder="Other needs" formControlName="q41"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">40) Any other concerns or ideas you have that we have not asked about here?</ion-label>
+          <ion-input placeholder="Concerns or ideas" formControlName="q42"></ion-input>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap">41) Do you ever use the internet?</ion-label>
+        <ion-radio-group formControlName="q43" (ionChange)="eventQ41($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">42) Where do you connect to the internet the most?</ion-label>
+        <ion-radio-group formControlName="q44" *ngIf="this.q41" (ionChange)="eventQ42($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>At Work</ion-label>
+              <ion-radio slot="start" value="At Work"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>While Commuting</ion-label>
+              <ion-radio slot="start" value="While Commuting"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Other</ion-label>
+              <ion-radio slot="start" value="Other"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group> 
+        <ion-item *ngIf="this.Other42">
+          <ion-label position="stacked">Other place where you connect to the internet:</ion-label>
+          <ion-input placeholder="Other place" formControlName="q45"></ion-input>
+        </ion-item>
+ 
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">43) What device do you use most often to connect?</ion-label>
+        <ion-radio-group formControlName="q46" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Smartphone</ion-label>
+              <ion-radio slot="start" value="Smartphone"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Laptop</ion-label>
+              <ion-radio slot="start" value="Laptop"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tablet</ion-label>
+              <ion-radio slot="start" value="Tablet"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Computer</ion-label>
+              <ion-radio slot="start" value="Computer"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">44) The device I identified in question 43 is:</ion-label>
+        <ion-radio-group formControlName="q47" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Less than one year old</ion-label>
+              <ion-radio slot="start" value="Less than one year old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>One to three years old</ion-label>
+              <ion-radio slot="start" value="One to three years old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Three to five years old</ion-label>
+              <ion-radio slot="start" value="Three to five years old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>More than five years old</ion-label>
+              <ion-radio slot="start" value="More than five years old"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">45) The device I identified in question 43 belongs to:</ion-label>
+        <ion-radio-group formControlName="q48" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Me</ion-label>
+              <ion-radio slot="start" value="Me"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>My Spouse</ion-label>
+              <ion-radio slot="start" value="My Spouse"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>My Children</ion-label>
+              <ion-radio slot="start" value="My Children"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Whole Family</ion-label>
+              <ion-radio slot="start" value="Whole Family"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>A Friend</ion-label>
+              <ion-radio slot="start" value="A Friend"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Other People</ion-label>
+              <ion-radio slot="start" value="Other People"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">46) Do you also use a second device to connect to the internet?</ion-label>
+        <ion-radio-group formControlName="q49" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">47) What is this device? (second device)</ion-label>
+        <ion-radio-group formControlName="q50" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Smartphone</ion-label>
+              <ion-radio slot="start" value="Smartphone"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Laptop</ion-label>
+              <ion-radio slot="start" value="Laptop"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tablet</ion-label>
+              <ion-radio slot="start" value="Tablet"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Computer</ion-label>
+              <ion-radio slot="start" value="Computer"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">48) The device I identified in question 47 is:</ion-label>
+        <ion-radio-group formControlName="q51" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Less than one year old</ion-label>
+              <ion-radio slot="start" value="Less than one year old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>One to three years old</ion-label>
+              <ion-radio slot="start" value="One to three years old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Three to five years old</ion-label>
+              <ion-radio slot="start" value="Three to five years old"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>More than five years old</ion-label>
+              <ion-radio slot="start" value="More than five years old"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">49) The device I identified in question 47 belongs to:</ion-label>
+        <ion-radio-group formControlName="q52" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Me</ion-label>
+              <ion-radio slot="start" value="Me"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>My Spouse</ion-label>
+              <ion-radio slot="start" value="My Spouse"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>My Children</ion-label>
+              <ion-radio slot="start" value="My Children"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Whole Family</ion-label>
+              <ion-radio slot="start" value="Whole Family"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>A Friend</ion-label>
+              <ion-radio slot="start" value="A Friend"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Other People</ion-label>
+              <ion-radio slot="start" value="Other People"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">50) My internet connection is mostly (choose one):</ion-label>
+        <ion-radio-group formControlName="q53" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Home Wi-Fi</ion-label>
+              <ion-radio slot="start" value="Home Wi-Fi"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Public Wi-Fi (coffee shop, library, mall, etc)</ion-label>
+              <ion-radio slot="start" value="Public Wi-Fi"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Work/School Internet</ion-label>
+              <ion-radio slot="start" value="Work/School Internet"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Prepaid Data Plan (cellphone) [Limited or Unlimited data plan]</ion-label>
+              <ion-radio slot="start" value="Prepaid Data Plan"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Shared Connection (hotspot)</ion-label>
+              <ion-radio slot="start" value="Shared Connection"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">51) On average I'm online per day:</ion-label>
+        <ion-radio-group formControlName="q54" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Less than one hour</ion-label>
+              <ion-radio slot="start" value="Less than one hour"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Between 1-3 hours</ion-label>
+              <ion-radio slot="start" value="Between 1-3 hours"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>More than 3 hours</ion-label>
+              <ion-radio slot="start" value="More than 3 hours"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">52) Do you experience any of the following issues while being online:</ion-label>
+        <ion-item *ngIf="this.q41">
+          <ion-select placeholder="Select all options that apply" [multiple]="true" formControlName="q55">
+            <ion-select-option value="Slow connection">Slow connection</ion-select-option>
+            <ion-select-option value="I get disconnected often">I get disconnected often</ion-select-option>
+            <ion-select-option value="My data plan or access is limited">My data plan or access is limited</ion-select-option>
+            <ion-select-option value="I don't own a device with internet access">I don't own a device with internet access</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">53) Which social media do you use more frequently?</ion-label>
+        <ion-radio-group formControlName="q56" *ngIf="this.q41" (ionChange)="eventOther53($event)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>WhatsApp</ion-label>
+              <ion-radio slot="start" value="WhatsApp"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Facebook</ion-label>
+              <ion-radio slot="start" value="Facebook"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Instagram</ion-label>
+              <ion-radio slot="start" value="Instagram"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tik-Tok</ion-label>
+              <ion-radio slot="start" value="Tik-Tok"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Other</ion-label>
+              <ion-radio slot="start" value="Other"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group> 
+        <ion-item *ngIf="this.Other53">  
+          <ion-label position="stacked">Other social media:</ion-label>
+          <ion-input placeholder="Other social media" formControlName="q57"></ion-input>
+        </ion-item>
+      
+        <ion-label class="ion-text-wrap" *ngIf="this.q41">54) I use my main device to:</ion-label>
+        <ion-item *ngIf="this.q41">
+          <ion-select placeholder="Select all options that apply" [multiple]="true" formControlName="q58" (ionChange)="eventOther54($event)">
+            <ion-select-option value="Email">Email</ion-select-option>
+            <ion-select-option value="Take photos">Take photos</ion-select-option>
+            <ion-select-option value="Watch videos">Watch videos</ion-select-option>
+            <ion-select-option value="Make videos">Make videos</ion-select-option>
+            <ion-select-option value="Read and post on social media">Read and post on social media</ion-select-option>
+            <ion-select-option value="Play games">Play games</ion-select-option>
+            <ion-select-option value="Chat/Messaging">Chat/Messaging</ion-select-option>
+            <ion-select-option value="Read maps">Read maps</ion-select-option>
+            <ion-select-option value="Find websites with information">Find websites with information</ion-select-option>
+            <ion-select-option value="Check calendar">Check calendar</ion-select-option>
+            <ion-select-option value="Attend work/school">Attend work/school</ion-select-option>
+            <ion-select-option value="Others">Others</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="this.Other54">  
+          <ion-label position="stacked">Other use:</ion-label>
+          <ion-input placeholder="Other use" formControlName="q59"></ion-input>
+        </ion-item>
+ 
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 55) Have you ever use online information to:</ion-label>
+        <ion-item *ngIf="this.q41">
+          <ion-select placeholder="Select all options that apply" [multiple]="true" formControlName="q60">
+            <ion-select-option value="Obtain food">Obtain food</ion-select-option>
+            <ion-select-option value="Help someone else get food">Help someone else get food</ion-select-option>
+            <ion-select-option value="Help provide information about getting food to others">Help provide information about getting food to others</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 56) Which phrase would get you to seek more information online?</ion-label>
+        <ion-list *ngIf="this.q41">
+          <ion-item>
+            <ion-label class="ion-text-wrap">Food for the Community</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q61">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">Food for your Family</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q62">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item><ion-item>
+            <ion-label class="ion-text-wrap">Food you need</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q63">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item><ion-item>
+            <ion-label class="ion-text-wrap">Charitable Food</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q64">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">Food supplies</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q65">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">Food stamps</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q66">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 57) What online information would help you trust the food pantry/bank?</ion-label>
+        <ion-list *ngIf="this.q41">
+          <ion-item>
+            <ion-label class="ion-text-wrap">It is on the internet</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q67">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">This is the sort of thing that always would trust</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q68">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">It has photographs and endorsements from example users</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q69">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">It has an endorsement from the city or other government</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q70">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">It has an endorsement from a church or temple</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q71">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">It has a rating from users (not people I know)</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q72">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">I can see that friends have used it</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q73">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap"> It was sent by a friend</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q74">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap"> Internet (social media) link</ion-label>
+            <ion-select placeholder="Rank from 5 to 1" formControlName="q75">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 58) I am comfortable using online maps:</ion-label>
+        <ion-radio-group formControlName="q76" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Maybe</ion-label>
+              <ion-radio slot="start" value="Maybe"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 59) If a website asks you to register to get access to information normally:</ion-label>
+        <ion-radio-group formControlName="q77" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Register</ion-label>
+              <ion-radio slot="start" value="Register"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Do not register and look for another site</ion-label>
+              <ion-radio slot="start" value="Do not register and look for another site"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 60) Are you familiar with two-factor authentication?</ion-label>
+        <ion-radio-group formControlName="q78" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+        <ion-label class="ion-text-wrap" *ngIf="this.q41"> 61) Have you ever used it?</ion-label>
+        <ion-radio-group formControlName="q79" *ngIf="this.q41">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+
+      <ion-button type="submit" expand="block">Submit Survey</ion-button>
+      
+    </form>
+  
+  </ion-list>
+
+</ion-content>

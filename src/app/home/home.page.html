@@ -1,20 +1,180 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Survey</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-list>
+    <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+      
+      <ion-item>
+          <ion-label class="ion-text-wrap" position="stacked">I describe myself as Hispanic or Latin American-origin</ion-label>
+          <ion-radio-group formControlName="q1">
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Yes</ion-label>
+                <ion-radio slot="start" value="Hispanic/LatinAmericanOrigin"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>No</ion-label>
+                <ion-radio slot="start" value="Not Hispanic/LatinAmericanOrigin"></ion-radio>
+              </ion-item>
+            </ion-list>
+          </ion-radio-group>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">The country of origin of my family is</ion-label>
+        <ion-input placeholder="List as many as needed" formControlName="q2"></ion-input>
+      </ion-item> 
+      
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">I was born in the United States</ion-label>
+        <ion-radio-group formControlName="q3">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="US Born"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="Not US Born"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">I moved to the United States before the age of 13</ion-label>
+        <ion-radio-group formControlName="q4">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">I prefer to speak:</ion-label>
+        <ion-radio-group formControlName="q5">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>English</ion-label>
+              <ion-radio slot="start" value="English"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Spanish</ion-label>
+              <ion-radio slot="start" value="Spanish"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Either one or Both</ion-label>
+              <ion-radio slot="start" value="Either or Both"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">In my house the preferred language is:</ion-label>
+        <ion-radio-group formControlName="q6">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>English</ion-label>
+              <ion-radio slot="start" value="English"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Spanish</ion-label>
+              <ion-radio slot="start" value="Spanish"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Either one or Both</ion-label>
+              <ion-radio slot="start" value="Either or Both"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">My age is</ion-label>
+        <ion-input placeholder="Age in numbers" inputmode="numeric" formControlName="q7"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">I am a</ion-label>
+        <ion-radio-group formControlName="q8">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Man</ion-label>
+              <ion-radio slot="start" value="Man"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Woman</ion-label>
+              <ion-radio slot="start" value="Woman"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Non-Binary</ion-label>
+              <ion-radio slot="start" value="Non-Binary"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">In my house, there are how many people</ion-label>
+        <ion-input placeholder="People in household" inputmode="numeric" formControlName="q9"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">In my house, there are how many children(Below 18yo)</ion-label>
+        <ion-input placeholder="Children in household" inputmode="numeric" formControlName="q10"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">In my house, there are how many people over 65yo(including myself)</ion-label>
+        <ion-input placeholder="People over 65 in household" inputmode="numeric" formControlName="q11"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">In my house, there are how many disabled people</ion-label>
+        <ion-input placeholder="Disabled in household" inputmode="numeric" formControlName="q12"></ion-input>
+      </ion-item>
+
+      <ion-button type="submit" expand="block">Submit Survey</ion-button>
+    
+    </form>
+  </ion-list>
+  <ion-item>
+    <ion-button (click)="ExportSurveys()" expand="block">Export Surveys</ion-button>
+  </ion-item>
+  <ion-list>
+    <ion-list-header>Surveys</ion-list-header>
+    <ion-item lines="inset" *ngFor="let data of Data">
+      <ion-label>
+        <h5>{{data.id}}</h5>
+        <p>{{data.Hispanic}}</p>
+        <p>{{data.Country_of_Origin}}</p>
+        <p>{{data.US_Born}}</p>
+        <p>{{data.Moved_US_at_13}}</p>
+        <p>{{data.Prefered_Language}}</p>
+        <p>{{data.Prefered_Home_Language}}</p>
+        <p>{{data.Age}}</p>
+        <p>{{data.Gender}}</p>
+        <p>{{data.Household_Members}}</p>
+        <p>{{data.Household_Children}}</p>
+        <p>{{data.Household_Seniors}}</p>
+        <p>{{data.Household_Disabled}}</p>
+      </ion-label>
+      <div class="item-note" item-end>
+        <ion-icon name="trash" style="zoom:2.0" (click)="removeSurvey(data.id)"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+    
 </ion-content>

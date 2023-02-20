@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-wrap">IS-CUCO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-list>
+    
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>Take a Survey</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        To start the survey, please select a language. Once inside the survey, the first question
+        will be the location where the survey is being taken. Then proceed to take the Survey
+      </ion-card-content>
+      
+        <ion-button fill="clear" [routerLink]="['/survey-spanish']">Spanish</ion-button>
+
+        <ion-button fill="clear" [routerLink]="['/survey-english']">English</ion-button>
+
+    </ion-card>
+    
+    <ion-card>
+      
+      <ion-card-header>
+        <ion-card-title>Navigator</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        View the database survey or Export the Surveys
+      </ion-card-content>
+      
+      <ion-button fill="clear" [routerLink]="['/database']">Database</ion-button>
+
+      <ion-button fill="clear" (click)="ExportSurveys()">Export Surveys</ion-button>
+    
+    </ion-card>
+  
+  </ion-list>
+
+</ion-content>
